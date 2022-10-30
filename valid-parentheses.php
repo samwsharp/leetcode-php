@@ -33,3 +33,39 @@ $solution = new Solution();
 var_dump($solution->isValid("({{{{}}}))")); // false
 var_dump($solution->isValid("([])")); // true
 var_dump($solution->isValid("(([]){})")); // true
+
+var_dump("---");
+
+// stack solution based off: https://leetcode.com/problems/valid-parentheses/discuss/469626/JavaScript-48-ms-faster-than-96.58
+// 4.5x faster than my solution above!
+class Solution2
+{
+    /**
+     * @param String $s
+     * @return Boolean
+     */
+    function isValid($s) {
+        $stack = [];
+
+        // loops through each parenthesis and pushes its closing "relative" to the stack
+        // if we encounter a closing parenthesis then the last pushed item on the stack should match it
+        for ($i = 0; $i < strlen($s); $i++) {
+            $char = $s[$i];
+
+            switch ($char) {
+                case "(": $stack[] = ")"; break;
+                case "[": $stack[] = "]"; break;
+                case "{": $stack[] = "}"; break;
+                default:
+                    if ($char !== array_pop($stack)) return false; // last pushed doesn't match so isn't valid
+            }
+        }
+
+        return !count($stack); // all items should be popped off stack to be valid
+    }
+}
+
+$solution = new Solution2();
+var_dump($solution->isValid("({{{{}}}))")); // false
+var_dump($solution->isValid("([])")); // true
+var_dump($solution->isValid("(([]){})")); // true
