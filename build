@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run PHPUnit tests given the test name and filepath
+# $1 is test name
+# $2 is file name
+
+if [[ -z $2 ]]; then
+     ./vendor/bin/phpunit --testdox $1 > /tmp/phpunit &
+     exit;
+fi
+
+./vendor/bin/phpunit --filter "/$1\$/" --testdox $2 > /tmp/phpunit &

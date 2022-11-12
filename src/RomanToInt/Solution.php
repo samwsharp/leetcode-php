@@ -19,9 +19,11 @@
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  */
 
-class Solution
+namespace LeetcodePhp\RomanToInt;
+
+final class Solution
 {
-    private $numerals = [
+    static private $numerals = [
         "I" => 1,
         "V" => 5,
         "X" => 10,
@@ -35,7 +37,7 @@ class Solution
      * @param String $s
      * @return Integer
      */
-    function romanToInt($s) {
+    static public function romanToInt($s) {
         $count = 0;
 
         // acount for special cases
@@ -47,24 +49,9 @@ class Solution
         $s = str_replace("IX", "VIIII", $s);
 
         foreach (str_split($s) as $str) {
-            $count = $count + $this->numerals[$str];
+            $count = $count + self::$numerals[$str];
         }
 
         return $count;
     }
 }
-
-$solution = new Solution();
-var_dump($solution->romanToInt("I")); // 1
-var_dump($solution->romanToInt("II")); // 2
-var_dump($solution->romanToInt("III")); // 3
-var_dump($solution->romanToInt("IV")); // 4
-var_dump($solution->romanToInt("V")); // 5
-var_dump($solution->romanToInt("VI")); // 6
-var_dump($solution->romanToInt("VII")); // 7
-var_dump($solution->romanToInt("VIII")); // 8
-var_dump($solution->romanToInt("IX")); // 9
-var_dump($solution->romanToInt("X")); // 10
-var_dump($solution->romanToInt("XI")); // 11
-var_dump($solution->romanToInt("LVIII")); // 58
-var_dump($solution->romanToInt("MCMXCIV")); // 1994
