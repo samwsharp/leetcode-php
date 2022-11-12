@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
  *
  * An input string is valid if:
@@ -9,13 +9,15 @@
  * Every close bracket has a corresponding open bracket of the same type.
  */
 
+namespace LeetcodePhp\ValidParentheses;
+
 class Solution
 {
     /**
      * @param String $s
      * @return Boolean
      */
-    function isValid($s) {
+    public static function isValid($s) {
         if (strlen($s) % 2 !== 0)
             return false;
 
@@ -28,13 +30,6 @@ class Solution
         return $s === ""; // the resulting string should be blank as we've removed all parentheses
     }
 }
-
-$solution = new Solution();
-var_dump($solution->isValid("({{{{}}}))")); // false
-var_dump($solution->isValid("([])")); // true
-var_dump($solution->isValid("(([]){})")); // true
-
-var_dump("---");
 
 // stack solution based off: https://leetcode.com/problems/valid-parentheses/discuss/469626/JavaScript-48-ms-faster-than-96.58
 // 4.5x faster than my solution above!
@@ -64,8 +59,3 @@ class Solution2
         return !count($stack); // all items should be popped off stack to be valid
     }
 }
-
-$solution = new Solution2();
-var_dump($solution->isValid("({{{{}}}))")); // false
-var_dump($solution->isValid("([])")); // true
-var_dump($solution->isValid("(([]){})")); // true

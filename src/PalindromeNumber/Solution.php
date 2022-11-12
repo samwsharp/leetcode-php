@@ -19,20 +19,18 @@
  * Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
  */
 
+namespace LeetcodePhp\PalindromeNumber;
+
 class Solution
 {
     /**
      * @param Integer $num
      * @return Boolean
      */
-    function isPalindrome($num) {
+    public static function isPalindrome($num) {
     	if ($num < 0) return false;
 
     	$array = array_map('intval', str_split($num));
     	return array_reverse($array) === $array;
     }
 }
-
-$solution = new Solution();
-var_dump($solution->isPalindrome(40)); // false
-var_dump($solution->isPalindrome(121)); // true

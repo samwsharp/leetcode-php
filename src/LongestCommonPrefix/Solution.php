@@ -13,44 +13,32 @@
  * Explanation: There is no common prefix among the input strings.
  */
 
-class Solution {
+namespace LeetcodePhp\LongestCommonPrefix;
 
+class Solution
+{
     /**
      * @param String[] $strs
      * @return String
      */
-    function longestCommonPrefix($strs) {
-        if (count($strs) == 1)
-            return $strs[0];
+    public static function longestCommonPrefix($strs)
+    {
+        $ac = count($strs);
+        if (!$strs || !$ac) return "";
 
-        // sort array by ascending string lengths
-        usort($strs, function($a, $b) {
-            return strlen($a) - strlen($b);
-        });
+        sort($strs);
 
-        // get the smallest word and remove it from the array
-        $smallest = $strs[0];
-        unset($strs[0]);
+        $first = $strs[0];
+        $last = $strs[$ac-1];
 
-        // for each character in the smallest word we'll loop
-        // through the remaining words and check if the character
-        // at the same index match.
+        $c = 0;
 
-        $prefix = "";
-        foreach (str_split($smallest) as $key=>$char) {
-            foreach ($strs as $str) {
-                if ($str[$key] != $char) return $prefix;
-            }
-
-            $prefix = $prefix . $char;
+        // compare the first and last elements (the most different)
+        while ($c < strlen($first)) {
+            if ($first[$c] !== $last[$c]) break;
+            $c++;
         }
 
-        return $prefix;
+        return substr($first, 0, $c);
     }
 }
-
-$solution = new Solution();
-
-var_dump($solution->longestCommonPrefix(["reflower","flow","flight"]));
-var_dump($solution->longestCommonPrefix(["flower","flow","flight"]));
-var_dump($solution->longestCommonPrefix(["aa", "a"]));
