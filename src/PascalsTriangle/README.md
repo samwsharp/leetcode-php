@@ -2,7 +2,7 @@ Given an integer numRows, return the first numRows of Pascal's triangle.
 
 In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
 
-![image](https://user-images.githubusercontent.com/40380125/201505586-97e72a20-dad6-456e-a044-9d8be7429817.png)
+![image](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
 
 Example 1:
 
