@@ -14,9 +14,7 @@ final class Solution
 
         $result = [ [1] ];
 
-        for ($i = 0; $i < $numRows; $i++) {
-            if ($i === 0) continue;
-
+        for ($i = 1; $i < $numRows; $i++) {
             $mid = [];
 
             // The sum of the two numbers in the previous array
